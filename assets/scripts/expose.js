@@ -25,8 +25,8 @@ function sound() {
 };
 function changeHorn() {
   //const dropdown = document.getElementById("mySelect");
-  const hornType = document.getElementById('horn-select');
-  const selectedValue = hornType.value;
+  const hornType = document.getElementById('horn-select').value;
+  var selectedValue = hornType.value;
   var image = imageList[0];
   image.src = 'assets/images/' + selectedValue + '.svg';
   audio.src = 'assets/audio/' + selectedValue + '.mp3';
