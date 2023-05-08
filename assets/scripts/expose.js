@@ -1,14 +1,12 @@
 // expose.js
 
 window.addEventListener('DOMContentLoaded', init);
-const Audio = document.querySelector('audio');
-const image = document.querySelector('img');
+const audio = document.querySelector('audio');
+const imageList = document.querySelector('img');
 const button = document.querySelector('button');
 var useConffetti = false;
 const confetti = new JSConfetti();
 function init(){
-
- 
   button.addEventListener('click', sound);
   document.getElementById('horn-select').addEventListener('change', changeHorn);
   document.getElementById('volume').addEventListener('input', changeVolume);
@@ -17,7 +15,7 @@ function init(){
 
 function sound() {
   // code to execute when the button is clicked
-  Audio.play();
+  audio.play();
   if(useConffetti){
     JSConffetti.addConfetti({
       confettiColors: [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
