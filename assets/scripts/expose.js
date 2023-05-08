@@ -1,28 +1,20 @@
 //expose.js
 
 window.addEventListener('DOMContentLoaded', init);
+//import JSConfetti from 'js-confetti'
 const audio = document.querySelector('audio');
-const imageList = document.querySelector('img');
+const imageList = document.querySelectorAll('img');
 const button = document.querySelector('button');
 var useConffetti = false;
-const confetti = new JSConfetti();
+const jsConfetti = new JSConfetti()
+
 function init(){
+ 
   button.addEventListener('click', sound);
   document.getElementById('horn-select').addEventListener('change', changeHorn);
   document.getElementById('volume').addEventListener('input', changeVolume);
 }
 
-
-function sound() {
-  // code to execute when the button is clicked
-  audio.play();
-  if(useConffetti){
-    JSConffetti.addConfetti({
-      confettiColors: [[255, 0, 0], [0, 255, 0], [0, 0, 255]]
-    })
-  }
-
-};
 function changeHorn() {
   //const dropdown = document.getElementById("mySelect");
   const hornType = document.getElementById('horn-select');
@@ -30,8 +22,22 @@ function changeHorn() {
   var image = imageList[0];
   image.src = 'assets/images/' + selectedValue + '.svg';
   audio.src = 'assets/audio/' + selectedValue + '.mp3';
-  useConffetti = (hornType == 'party-horn')
+  useConffetti = (selectedValue == 'party-horn')
 }
+
+function sound() {
+  // code to execute when the button is clicked
+  audio.play();
+  if(useConffetti){
+    jsConfetti.addConfetti({
+      confettiColors: [
+        '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+      ],
+    })
+  }
+
+};
+
 function changeVolume(){
   var volumeLevel = document.getElementById('volume').value;
   var image = imageList[1];
@@ -47,6 +53,6 @@ function changeVolume(){
   else{
     image.src = 'assets/icons/volume-level-3.svg';
   }
-  Audio.value = volumeLevel/100;
+  audio.volume = volumeLevel/100;
 }
 
